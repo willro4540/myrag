@@ -1,0 +1,26 @@
+using System.Text.Json.Serialization;
+
+namespace MainServer.Models;
+
+// shared/schemas/main-llm
+public sealed record LlmServerRequest(
+    [property: JsonPropertyName("retrieved_content")] string RetrievedContent,
+    [property: JsonPropertyName("question")] string Question);
+
+public sealed record LlmServerResponse(
+    [property: JsonPropertyName("result")] string Result);
+
+public sealed record ComplaintNarrativeRequest(
+    [property: JsonPropertyName("charge")] string Charge,
+    [property: JsonPropertyName("incident_description")] string IncidentDescription);
+
+public sealed record ComplaintNarrativeResponse(
+    [property: JsonPropertyName("purpose")] string Purpose,
+    [property: JsonPropertyName("facts")] string Facts);
+
+public sealed record RewriteRequest(
+    [property: JsonPropertyName("history")] List<HistoryTurn> History,
+    [property: JsonPropertyName("new_message")] string NewMessage);
+
+public sealed record RewriteResponse(
+    [property: JsonPropertyName("rewritten")] string Rewritten);
